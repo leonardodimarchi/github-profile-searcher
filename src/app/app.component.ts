@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GithubService } from 'src/services/github/github.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'github-profile-search';
+
+  constructor(
+    private readonly githubService: GithubService,
+  ) { }
+
+  public nameToSearch: string = '';
+
+  public async search(): Promise<void> {
+    const userInfo = await this.githubService.getUserInfo(this.nameToSearch);
+  }
 }

@@ -1,27 +1,36 @@
-# GithubProfileSearch
+# Github profile searcher
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.8.
+APIs allow you to use the real world data that drives platforms like GitHub. You can communicate with the remote servers and get data that you can use to build an app.
 
-## Development server
+In this project you create a search app that uses GitHub API to retrieve user information when a valid username is input. It should display avatar, username, followers count, repository count, top 4 repositories based on forks and stars.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## User Stories
 
-## Code scaffolding
+-   [x] User can enter a username
+-   [x] User can click on search button to retrieve information
+-   [ ] User can see the avatar, username, followers and repository count of searched user
+-   [ ] User can see the top 4 repositories of searched user
+-   [ ] User should get an alert if the username is not valid
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Bonus features
+-  [ ] User can toggle dark/light mode
+-  [ ] Selected mode should persist when user comes back to the app again
 
-## Build
+## Useful links and resources
+To get the data you need to communicate with GitHub API. you can either
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+- [Read Docs](https://developer.github.com/v3/)
+- [Check API directly](https://api.github.com/users/chaharshivam)
 
-## Running unit tests
+To get data from API you can check [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) in javascript
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Example projects
 
-## Running end-to-end tests
+- [GitHub profiles](https://github-profiles.netlify.app/) ([repo](https://github.com/GabrielNBDS/GitHub-Profiles))
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+- [github-profile-search](https://github-profile-search-272901.web.app/) ([repo](https://github.com/guerra08/github-profile-search))
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Reference
+
+- [app-ideas](https://github.com/florinpop17/app-ideas/blob/master/Projects/2-Intermediate/GitHub-Profiles.md)
