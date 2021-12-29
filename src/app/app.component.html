@@ -10,6 +10,11 @@
       </button>
     </mat-form-field>
 
-    
+    <div class="profile" *ngIf="showingProfile">
+      <h2>{{ showingProfile.name }}</h2>
+      <img [src]="showingProfile.avatar_url"/>
+      <p>{{ showingProfile.followers }}</p>
+      <p>{{ showingProfile.public_repos }}</p>
+    </div>
   </section>
 </main>
