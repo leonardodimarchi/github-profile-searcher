@@ -1,9 +1,16 @@
 main{
   overflow: hidden;
 
-  h1 {
+  > h1 {
     text-align: center;
     margin-top: 3rem;
+  }
+
+  kbd {
+    padding: 0.2rem;
+    margin: 0 0.2rem;
+    border: 1px solid gray;
+    border-radius: 5px;
   }
 
   section {
@@ -14,15 +21,8 @@ main{
     width: 60vw;
     margin: auto;
 
-    .input {
-      button {
-        background: none;
-        border: 0;
-        outline: 0;
-
-        cursor: pointer;
-        font-size: 1.2rem;
-      }
+    p {
+      text-align: center;
     }
 
     .profile {
@@ -35,6 +35,8 @@ main{
         img {
           width: 15rem;
           border-radius: 15px;
+
+          cursor: pointer;
         }
       }
 
@@ -59,4 +61,10 @@ main{
       }
     }
   }
+}
+
+.spinner {
+  margin: auto {
+    top: 2rem;
+  };
 }

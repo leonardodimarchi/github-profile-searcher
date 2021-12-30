@@ -2,28 +2,38 @@
   <h1>Github Profile Search</h1>
 
   <section>
-    <mat-form-field class="input" appearance="fill">
+    <mat-form-field appearance="fill">
       <mat-label>Username</mat-label>
-      <input matInput placeholder="Ex. leonardodimarchi" [(ngModel)]="nameToSearch" (keydown.enter)="search()">
+      <input matInput placeholder="Ex. leonardodimarchi" [formControl]="nameToSearchFormControl" (keydown.enter)="search()">
+      <mat-error *ngIf="nameToSearchFormControl.hasError('required')">
+        Username is <strong>required</strong>
+      </mat-error>
       <button matSuffix mat-icon-button aria-label="Search" (click)="search()">
         <mat-icon>search</mat-icon>
       </button>
     </mat-form-field>
 
-    <div class="profile" *ngIf="showingProfile">
-      <div class="profile--information">
-        <h2>{{ showingProfile.name }}</h2>
-        <img [src]="showingProfile.avatar_url"/>
-        <p>Followers: {{ showingProfile.followers }}</p>
-        <p>Repositories Count: {{ showingProfile.public_repos }}</p>
-      </div>
+    <ng-container *ngIf="showingProfile; else waitingContainer">
+      <div class="profile">
+        <div class="profile--information">
+          <h2>{{ showingProfile.name }}</h2>
+          <img (click)="redirectToProfile()" [src]="showingProfile.avatar_url" alt="Github profile image"/>
+          <p>Followers: {{ showingProfile.followers }}</p>
+          <p>Repositories Count: {{ showingProfile.public_repos }}</p>
+        </div>
 
-      <div class="profile--repositories">
-        <h2>Latest updates</h2>
-        <a *ngFor="let repository of showingProfileRepositories" [href]="repository.html_url" target="_blank">
-          {{ repository.name }}
-        </a>
+        <div class="profile--repositories" *ngIf="showingProfileRepositories.length > 0">
+          <h2>Latest updates</h2>
+          <a *ngFor="let repository of showingProfileRepositories" [href]="repository.html_url" target="_blank">
+            {{ repository.name }}
+          </a>
+        </div>
       </div>
-    </div>
+    </ng-container>
+
+    <ng-template #waitingContainer>
+      <mat-progress-spinner *ngIf="isLoadingProfile" mode="indeterminate" class="spinner"></mat-progress-spinner>
+      <p *ngIf="!isLoadingProfile">Type a github username above and hit the <kbd>ENTER</kbd> key</p>
+    </ng-template>
   </section>
 </main>
