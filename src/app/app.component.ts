@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { RepositoryProxy } from 'src/models/repository.proxy';
 import { UserProxy } from 'src/models/user.proxy';
 import { GithubService } from 'src/services/github/github.service';
@@ -13,6 +14,7 @@ export class AppComponent {
 
   constructor(
     private readonly githubService: GithubService,
+    private readonly snackBar: MatSnackBar,
   ) { }
 
   public nameToSearchFormControl = new FormControl('', [Validators.required]);
@@ -23,15 +25,21 @@ export class AppComponent {
   public isLoadingProfile: boolean = false;
 
   public async search(): Promise<void> {
-    if (this.nameToSearchFormControl.invalid)
+    if (this.nameToSearchFormControl.invalid) {
       return;
+    }
 
-    this.isLoadingProfile = true;
+    try {
+      this.isLoadingProfile = true;
 
-    this.showingProfile = await this.githubService.getUserInfo(this.nameToSearchFormControl.value);
-    this.showingProfileRepositories = await this.githubService.getUserRepositories(this.nameToSearchFormControl.value);
+      this.showingProfile = await this.githubService.getUserInfo(this.nameToSearchFormControl.value);
+      this.showingProfileRepositories = await this.githubService.getUserRepositories(this.nameToSearchFormControl.value);
 
-    this.isLoadingProfile = false;
+    } catch (error) {
+      await this.snackBar.open(error.message, 'Ok', { duration: 2000 });
+    } finally {
+      this.isLoadingProfile = false;
+    }
   }
 
   public redirectToProfile(): void {

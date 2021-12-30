@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -21,6 +22,7 @@ import { AppComponent } from './app.component';
     HttpClientModule,
     MatInputModule,
     MatIconModule,
+    MatSnackBarModule,
     BrowserModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
