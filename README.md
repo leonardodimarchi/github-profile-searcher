@@ -13,8 +13,8 @@ In this project you create a search app that uses GitHub API to retrieve user in
 -   [x] User should get an alert if the username is not valid
 
 ## Bonus features
--  [ ] User can toggle dark/light mode
--  [ ] Selected mode should persist when user comes back to the app again
+-  [x] User can toggle dark/light mode
+-  [x] Selected mode should persist when user comes back to the app again
 
 ## Useful links and resources
 To get the data you need to communicate with GitHub API. you can either
