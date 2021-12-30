@@ -1,4 +1,6 @@
 main{
+  overflow: hidden;
+
   h1 {
     text-align: center;
     margin-top: 3rem;
@@ -25,13 +27,34 @@ main{
 
     .profile {
       display: grid;
-      grid-template-columns: 15vw 1fr;
+      grid-template-columns: 1fr 1fr;
 
       &--information {
         text-align: center;
 
         img {
-          width: 100%;
+          width: 15rem;
+          border-radius: 15px;
+        }
+      }
+
+      &--repositories {
+        text-align: center;
+
+        a {
+          display: block;
+          font-size: 1.2rem;
+          text-decoration: underline;
+          color: black;
+
+          cursor: pointer;
+
+          width: fit-content;
+          margin: 0.5rem auto;
+
+          &:hover {
+            color: darkgray;
+          }
         }
       }
     }

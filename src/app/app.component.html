@@ -15,7 +15,14 @@
         <h2>{{ showingProfile.name }}</h2>
         <img [src]="showingProfile.avatar_url"/>
         <p>Followers: {{ showingProfile.followers }}</p>
-        <p>Repositories: {{ showingProfile.public_repos }}</p>
+        <p>Repositories Count: {{ showingProfile.public_repos }}</p>
+      </div>
+
+      <div class="profile--repositories">
+        <h2>Latest updates</h2>
+        <a *ngFor="let repository of showingProfileRepositories" [href]="repository.html_url" target="_blank">
+          {{ repository.name }}
+        </a>
       </div>
     </div>
   </section>
