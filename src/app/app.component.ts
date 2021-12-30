@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { RepositoryProxy } from 'src/models/repository.proxy';
 import { UserProxy } from 'src/models/user.proxy';
 import { GithubService } from 'src/services/github/github.service';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +12,13 @@ import { GithubService } from 'src/services/github/github.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-
-  @HostBinding('class') hostClass: string = 'theme-light';
-
   constructor(
     private readonly githubService: GithubService,
+    private readonly themeService: ThemeService,
     private readonly snackBar: MatSnackBar,
   ) { }
+
+  @HostBinding('class') hostClass: string = 'theme-light';
 
   public nameToSearchFormControl: FormControl = new FormControl('', [Validators.required]);
   public darkModeToggleFormControl: FormControl = new FormControl(false);
@@ -28,8 +29,14 @@ export class AppComponent implements OnInit {
   public isLoadingProfile: boolean = false;
 
   public ngOnInit(): void {
-    this.darkModeToggleFormControl.valueChanges.subscribe(isActive => {
-      this.hostClass = isActive ? 'theme-dark' : 'theme-light';
+    const alreadyIsDarkMode = this.themeService.isDarkMode();
+
+    this.darkModeToggleFormControl.setValue(alreadyIsDarkMode);
+    this.setHostTheme(alreadyIsDarkMode);
+
+    this.darkModeToggleFormControl.valueChanges.subscribe(isDarkMode => {
+      this.setHostTheme(isDarkMode);
+      this.themeService.setTheme(isDarkMode);
     });
   }
 
@@ -53,5 +60,9 @@ export class AppComponent implements OnInit {
 
   public redirectToProfile(): void {
     window.open('https://www.github.com/' + this.showingProfile?.login, '_blank');
+  }
+
+  private setHostTheme(isDarkMode: boolean): void {
+    this.hostClass = isDarkMode ? 'theme-dark' : 'theme-light';
   }
 }
